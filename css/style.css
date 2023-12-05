@@ -11,15 +11,17 @@
     --selective-yellow: #ffb703ff;
     --ut-orange: #fb8500ff;
 }
-
-h1{
+.nav-link{
+  color:var(--selective-yellow);
+  font-weight: 600;
+}
+h2{
     color:var(--ut-orange);
     font-weight: 800
 }
 body{
     background-color: var(--prussian-blue);
 }
-
 footer{
     color:black;
     font-weight: 600;

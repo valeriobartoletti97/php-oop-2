@@ -6,6 +6,7 @@ include __DIR__ . '/../Model/Movies.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,8 +27,25 @@ include __DIR__ . '/../Model/Movies.php';
     <title>Esperimento</title>
     <title>Php Movie</title>
 </head>
+
 <body>
-    <div id="app" class="container">
-        <header class="mt-5">
-            <h1 class="text-uppercase text-center">Movies</h1>
+    <div id="app">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav text-uppercase">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="index.php">Movies</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="books.php">Books</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Games</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </header>
