@@ -1,7 +1,7 @@
 <?php
 
-include __DIR__ . '/Views/header.php'
-
+include __DIR__ . '/Views/header.php';
+$movies = Movie::fetchAll();
 ?>
 
         <main class="mt-5 container">

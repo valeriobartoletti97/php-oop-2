@@ -1,16 +1,18 @@
 <?php
 
 include(__DIR__ . '/Genre.php');
-class Movie {
-    public int $id;
-    public string $title;
-    public string $overview;
-    public float $vote_average;
-    public string $poster_path;
+class Movie
+{
+    private int $id;
+    private string $title;
+    private string $overview;
+    private float $vote_average;
+    private string $poster_path;
 
-    public array $genres;
+    private array $genres;
 
-    public function __construct($id,$title,$overview,$vote_average,$poster_path, $genres) {
+    public function __construct($id, $title, $overview, $vote_average, $poster_path, $genres)
+    {
         $this->id = $id;
         $this->title = $title;
         $this->overview = $overview;
@@ -19,26 +21,29 @@ class Movie {
         $this->genres = $genres;
     }
 
-    public function getVote(){
+    private function getVote()
+    {
         $vote = ceil($this->vote_average / 2);
         $template = "<p>";
-        for($n = 1;$n <= 5; $n++){
+        for ($n = 1; $n <= 5; $n++) {
             $template .= $n <= $vote ? "<i class='fa-solid fa-star'></i>" : "<i class='fa-regular fa-star'></i>";
         }
         $template .= "</p>";
         return $template;
     }
 
-    public function formatGenre(){
+    private function formatGenre()
+    {
         $template = "<p>";
-        for($n = 1;$n < count($this->genres); $n++){
-            $template .= '<span>' . $this->genres[$n]->genreName . ' | ' . '</span>';
+        for ($n = 1; $n < count($this->genres); $n++) {
+            $template .= '<span>' . $this->genres[$n]->genreName . ' ' . '</span>';
         }
         $template .= "</p>";
         return $template;
     }
 
-    public function printCard(){
+    public function printCard()
+    {
         $image = $this->poster_path;
         $title = $this->title;
         $content = $this->overview;
@@ -46,21 +51,28 @@ class Movie {
         $genre = $this->formatGenre();
         include __DIR__ . '/../Views/card.php';
     }
-}
 
-$movieString = file_get_contents(__DIR__ . '/movie_db.json');
-$movieList = json_decode($movieString,true);
+    public static function fetchAll()
+    {
+        $genres = Genre::feìtchAll();
+        $movieString = file_get_contents(__DIR__ . '/movie_db.json');
+        $movieList = json_decode($movieString, true);
 
-$movies = [];
+        $movies = [];
 
-foreach($movieList as $movie){
-    $itemGenres = [];
-    for($i = 0; $i < count($movie['genre_ids']); $i++){
-        $rndIndex = rand(0,count($genres) - 1);
-        $genre = $genres[$rndIndex];
-        $itemGenres[] = $genre;
+        foreach ($movieList as $movie) {
+            $itemGenres = [];
+            while (count($itemGenres) < count($movie['genre_ids'])) {
+                $rndIndex = rand(0, count($genres) - 1);
+                $genre = $genres[$rndIndex];
+                if (!in_array($genre, $itemGenres)) {
+                    $itemGenres[] = $genre;
+                }
+            }
+            $movies[] = new Movie($movie['id'], $movie['title'], $movie['overview'], $movie['vote_average'], $movie['poster_path'], $itemGenres);
+        }
+        return $movies;
     }
-    $movies[]= new Movie($movie['id'],$movie['title'],$movie['overview'],$movie['vote_average'],$movie['poster_path'],$itemGenres);
 }
 
 ?>
