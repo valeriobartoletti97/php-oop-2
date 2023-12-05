@@ -43,6 +43,4 @@ foreach($movieList as $movie){
     $movies[]= new Movie($movie['id'],$movie['title'],$movie['overview'],$movie['vote_average'],$movie['poster_path'],);
 }
 
-//var_dump($movies);
-
 ?>
