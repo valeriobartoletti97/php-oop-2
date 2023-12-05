@@ -1,5 +1,6 @@
 <?php
 
+include(__DIR__ . '/Genre.php');
 class Movie {
     public int $id;
     public string $title;
@@ -7,12 +8,15 @@ class Movie {
     public float $vote_average;
     public string $poster_path;
 
-    public function __construct($id,$title,$overview,$vote_average,$poster_path) {
+    public array $genres;
+
+    public function __construct($id,$title,$overview,$vote_average,$poster_path, $genres) {
         $this->id = $id;
         $this->title = $title;
         $this->overview = $overview;
         $this->vote_average = $vote_average;
         $this->poster_path = $poster_path;
+        $this->genres = $genres;
     }
 
     public function getVote(){
@@ -25,11 +29,21 @@ class Movie {
         return $template;
     }
 
+    public function formatGenre(){
+        $template = "<p>";
+        for($n = 1;$n < count($this->genres); $n++){
+            $template .= '<span>' . $this->genres[$n]->genreName . ' | ' . '</span>';
+        }
+        $template .= "</p>";
+        return $template;
+    }
+
     public function printCard(){
         $image = $this->poster_path;
         $title = $this->title;
         $content = $this->overview;
         $vote = $this->getVote();
+        $genre = $this->formatGenre();
         include __DIR__ . '/../Views/card.php';
     }
 }
@@ -40,7 +54,13 @@ $movieList = json_decode($movieString,true);
 $movies = [];
 
 foreach($movieList as $movie){
-    $movies[]= new Movie($movie['id'],$movie['title'],$movie['overview'],$movie['vote_average'],$movie['poster_path'],);
+    $itemGenres = [];
+    for($i = 0; $i < count($movie['genre_ids']); $i++){
+        $rndIndex = rand(0,count($genres) - 1);
+        $genre = $genres[$rndIndex];
+        $itemGenres[] = $genre;
+    }
+    $movies[]= new Movie($movie['id'],$movie['title'],$movie['overview'],$movie['vote_average'],$movie['poster_path'],$itemGenres);
 }
 
 ?>

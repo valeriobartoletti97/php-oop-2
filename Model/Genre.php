@@ -16,5 +16,4 @@ $genres = [];
 foreach($genresList as $genre){
     $genres[] = new Genre($genre);
 }
-var_dump($genres);
 ?>

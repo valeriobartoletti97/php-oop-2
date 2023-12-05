@@ -11,10 +11,13 @@
                     <h5 class="text-uppercase">
                         <?php echo $title ?>
                     </h5>
+                    <?php echo $vote ?>
+                    <div>
+                        <?php echo $genre ?>
+                    </div>
                     <p class="plot">"
                         <?php echo $content ?>
                     </p>
-                    <?php echo $vote ?>
                 </div>
             </div>
         </div>
