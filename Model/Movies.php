@@ -18,18 +18,18 @@ class Movie {
     public function getVote(){
         $vote = ceil($this->vote_average / 2);
         $template = "<p>";
-        for($n=1,$n <=5; $n++;){
+        for($n = 1;$n <= 5; $n++){
             $template .= $n <= $vote ? "<i class='fa-solid fa-star'></i>" : "<i class='fa-regular fa-star'></i>";
-            $tepmlate .= "</p>";
-            return $template;
         }
+        $template .= "</p>";
+        return $template;
     }
 
     public function printCard(){
         $image = $this->poster_path;
         $title = $this->title;
         $content = $this->overview;
-        $vote = $this->vote_average;
+        $vote = $this->getVote();
         include __DIR__ . '/../Views/card.php';
     }
 }

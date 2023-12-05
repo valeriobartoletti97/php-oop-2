@@ -12,8 +12,9 @@
                         <?php echo $title ?>
                     </h5>
                     <p class="plot">"
-                        <?php echo $content ?>"
+                        <?php echo $content ?>
                     </p>
+                    <?php echo $vote ?>
                 </div>
             </div>
         </div>
