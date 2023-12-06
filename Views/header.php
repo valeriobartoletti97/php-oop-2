@@ -24,14 +24,13 @@ include __DIR__ . '/../Model/Book.php';
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
-    <title>Esperimento</title>
-    <title>Php Movie</title>
+    <title>PhpZon</title>
 </head>
 
 <body>
     <div id="app">
         <header>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-lg py-4">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul class="navbar-nav text-uppercase">

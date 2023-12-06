@@ -8,7 +8,9 @@ class Book {
     private $authors;
     private $categories;
 
-    private function __construct($id, $title, $overview, $image, $authors, $categories) {
+    private $price;
+
+    private function __construct($id, $title, $overview, $image, $authors, $categories,) {
         $this->id = $id;
         $this->title = $title;
         $this->overview = $overview;
@@ -23,7 +25,13 @@ class Book {
         $content = $this->overview;
         $authors = $this->getAuthors();
         $categories = $this->getCategories();
+        $price = $this->getPrice();
         include __DIR__ . '/../Views/book_card.php';
+    }
+
+    public function getPrice(){
+        $rndPrice = rand(5,100). '€';
+        return $rndPrice;
     }
 
     private function getAuthors(){
@@ -51,7 +59,7 @@ class Book {
         $books = [];
 
         foreach ($booksList as $item) {
-            $books[] = new Book ($item['_id'], $item['title'], $item['longDescription'], $item['thumbnailUrl'], $item['authors'], $item['categories']);
+            $books[] = new Book ($item['_id'], $item['title'], $item['longDescription'], $item['thumbnailUrl'], $item['authors'], $item['categories'],);
         }
         return $books;
     }

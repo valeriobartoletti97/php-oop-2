@@ -5,25 +5,38 @@
 }
 
 :root{
-    --sky-blue: #8ecae6ff;
-    --blue-green: #219ebcff;
-    --prussian-blue: #023047ff;
-    --selective-yellow: #ffb703ff;
-    --ut-orange: #fb8500ff;
+  --floral-white: #fffcf2ff;
+  --timberwolf: #ccc5b9ff;
+  --black-olive: #403d39ff;
+  --eerie-black: #252422ff;
+  --flame: #eb5e28ff;
+}
+.price-tag{
+  position: absolute;
+  top:3px;
+  right:3px;
+  background-color:var(--flame);
+  color: var(--floral-white);
+  padding: 7px 20px;
+  border-radius: 5px;
+  font-weight: 600;
 }
 .author{
   font-style: italic;
 }
+nav{
+  background-color: var(--eerie-black);
+}
 .nav-link{
-  color:var(--selective-yellow);
+  color:var(--timberwolf);
   font-weight: 600;
 }
 h2{
-    color:var(--ut-orange);
+    color:var(--flame);
     font-weight: 800
 }
 body{
-    background-color: var(--prussian-blue);
+    background-color: var(--black-olive);
 }
 footer{
     color:black;
