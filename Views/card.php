@@ -6,7 +6,9 @@
                     <img src="<?php echo $image ?>" alt="<?php echo $title ?>">
                 </div>
                 <div class="price-tag">
-                    <?php echo $price ?>
+                    <?php if (isset($sale) && $sale){
+                        echo ($price -($price * ($sale / 100))) . '€';
+                    } ?>
                 </div>
             </div>
             <div class="flip-card-back">
@@ -21,9 +23,21 @@
                     <div class="mb-3">
                         <?php if (isset($categories)) echo $categories ?>
                     </div>
-                    <div class="mb-4">
+                    <?php
+                    if(isset($error) && $error){?>
+                        <div class="alert alert-danger">
+                            <?php echo $error ?>
+                        </div>
+                    <?php } ?>
+                    <div class="mb-3">
                         <?php echo $price ?>
                     </div>
+                    <?php
+                    if(isset($sale) && $sale){?>
+                       <div class="text-center mb-4">
+                        <span>Sconto <?php echo $sale?>%</span>
+                       </div>
+                    <?php } ?>
                     <p class="plot">
                         " <?php echo $overview?> "
                     </p>

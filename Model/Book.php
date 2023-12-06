@@ -17,7 +17,18 @@ class Book extends Product
     }
 
     public function formatCard(){
+        if($this->price > 30){
+            try{
+                $this->setDiscount(10);
+            } catch (Exception $e){
+                $error = $e->getMessage();
+            }
+            
+        }
+        ;
         $cardElement = [
+            'error' => $error ?? '',
+            'sale' => $this->getDiscount(),
             'image' => $this->image,
             'title' => $this->title,
             'overview' => $this->overview,
@@ -26,11 +37,6 @@ class Book extends Product
             'price' => parent::getPrice(),
         ]; 
         return $cardElement;
-    }
-
-    public function getPrice(){
-        $rndPrice = rand(5,100). '€';
-        return $rndPrice;
     }
 
     private function getAuthors(){
