@@ -1,7 +1,7 @@
 <?php
 
-include __DIR__ . '/Views/header.php'
-
+include __DIR__ . '/Views/header.php';
+$books = Book::fetchAll();  
 ?>
 
         <main class="mt-5 container">
@@ -9,9 +9,9 @@ include __DIR__ . '/Views/header.php'
                 <h2 class="text-center text-uppercase mb-4">Books</h2>
             </section>
             <div class="row">
-                <div class="d-flex justify-content-center text-white">
-                    Siamo ancora in fase di sviluppo...
-                </div>
+                <?php foreach($books as $book){
+                    $book->printCard();
+                } ?>
             </div>
         </main>
         

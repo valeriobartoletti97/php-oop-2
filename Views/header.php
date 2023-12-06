@@ -1,7 +1,7 @@
 <?php
 
-include __DIR__ . '/../Model/Movies.php';
-
+include __DIR__ . '/../Model/Movie.php';
+include __DIR__ . '/../Model/Book.php';
 ?>
 
 <!DOCTYPE html>

@@ -11,6 +11,9 @@
     --selective-yellow: #ffb703ff;
     --ut-orange: #fb8500ff;
 }
+.author{
+  font-style: italic;
+}
 .nav-link{
   color:var(--selective-yellow);
   font-weight: 600;
