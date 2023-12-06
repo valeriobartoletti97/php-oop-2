@@ -16,7 +16,7 @@ class Product
     }
 
     public function getPrice(){
-        $rndPrice = rand(5,100). '€';
+        $rndPrice = rand(10,50). '€';
         return $rndPrice;
     }
 }

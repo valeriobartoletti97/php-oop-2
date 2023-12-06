@@ -2,7 +2,7 @@
 
 include(__DIR__ . '/Genre.php');
 include_once(__DIR__ . '/Product.php');
-include(__DIR__ . '/../Traits/DrawCard.php');
+include_once(__DIR__ . '/../Traits/DrawCard.php');
 
 class Movie extends Product
 {

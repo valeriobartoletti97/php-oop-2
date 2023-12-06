@@ -1,8 +1,10 @@
 <?php
 
 include_once(__DIR__ . '/Product.php');
+include_once(__DIR__ . '/../Traits/DrawCard.php');
 class Book extends Product
 {
+    use DrawCard;
     private $id;
     private $authors;
     private $categories;
@@ -14,14 +16,16 @@ class Book extends Product
         $this->categories = $categories;
     }
 
-    public function printCard(){
-        $image = $this->image;
-        $title = $this->title;
-        $overview = $this->overview;
-        $content = $this->getAuthors();
-        $categories = $this->getCategories();
-        $price = parent::getPrice();
-        include __DIR__ . '/../Views/card.php';
+    public function formatCard(){
+        $cardElement = [
+            'image' => $this->image,
+            'title' => $this->title,
+            'overview' => $this->overview,
+            'content' => $this->getAuthors(),
+            'categories' => $this->getCategories(),
+            'price' => parent::getPrice(),
+        ]; 
+        return $cardElement;
     }
 
     public function getPrice(){
