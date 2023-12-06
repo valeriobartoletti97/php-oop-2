@@ -2,9 +2,11 @@
 
 include(__DIR__ . '/Genre.php');
 include_once(__DIR__ . '/Product.php');
+include(__DIR__ . '/../Traits/DrawCard.php');
 
 class Movie extends Product
 {
+    use DrawCard;
     private int $id;
     private float $vote_average;
     private array $genres;
@@ -38,15 +40,17 @@ class Movie extends Product
         return $template;
     }
 
-    public function printCard()
+    public function formatCard()
     {
-        $image = $this->image;
-        $title = $this->title;
-        $overview = $this->overview;
-        $vote = $this->getVote();
-        $content = $this->formatGenre();
-        $price = parent::getPrice();
-        include __DIR__ . '/../Views/card.php';
+        $cardElement=[
+            'image' => $this->image,
+            'title' => $this->title,
+            'vote' => $this->getVote(),
+            'content' => $this->formatGenre(),
+            'price' => parent::getPrice(),
+            'overview' => $this->overview
+        ];
+        return $cardElement;
     }
 
     public static function fetchAll()
@@ -58,7 +62,7 @@ class Movie extends Product
         $movies = [];
 
         foreach ($movieList as $movie) {
-            $rndPrice = rand(5, 100) . '€';
+            $rndPrice = rand(1, 12) . '€';
             $itemGenres = [];
             while (count($itemGenres) < count($movie['genre_ids'])) {
                 $rndIndex = rand(0, count($genres) - 1);
