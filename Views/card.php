@@ -8,7 +8,9 @@
                 <div class="price-tag">
                     <?php if (isset($sale) && $sale){
                         echo ($price -($price * ($sale / 100))) . '€';
-                    } ?>
+                    } else {
+                        echo $price . '€';
+                    }?>
                 </div>
             </div>
             <div class="flip-card-back">
