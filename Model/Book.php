@@ -17,11 +17,11 @@ class Book extends Product
     public function printCard(){
         $image = $this->image;
         $title = $this->title;
-        $content = $this->overview;
-        $authors = $this->getAuthors();
+        $overview = $this->overview;
+        $content = $this->getAuthors();
         $categories = $this->getCategories();
         $price = parent::getPrice();
-        include __DIR__ . '/../Views/book_card.php';
+        include __DIR__ . '/../Views/card.php';
     }
 
     public function getPrice(){

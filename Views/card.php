@@ -5,18 +5,27 @@
                 <div class="img-card-container">
                     <img src="<?php echo $image ?>" alt="<?php echo $title ?>">
                 </div>
+                <div class="price-tag">
+                    <?php echo $price ?>
+                </div>
             </div>
             <div class="flip-card-back">
                 <div class="card-description py-4 text-center">
                     <h5 class="text-uppercase">
                         <?php echo $title ?>
                     </h5>
-                    <?php echo $vote ?>
-                    <div>
-                        <?php echo $genre ?>
+                    <?php if (isset($vote)) echo $vote ?>
+                    <div class="author mb-3">
+                        <?php echo $content?>
                     </div>
-                    <p class="plot">"
-                        <?php echo $content ?>
+                    <div class="mb-3">
+                        <?php if (isset($categories)) echo $categories ?>
+                    </div>
+                    <div class="mb-4">
+                        <?php echo $price ?>
+                    </div>
+                    <p class="plot">
+                        " <?php echo $overview?> "
                     </p>
                 </div>
             </div>

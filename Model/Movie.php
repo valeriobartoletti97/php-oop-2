@@ -42,9 +42,9 @@ class Movie extends Product
     {
         $image = $this->image;
         $title = $this->title;
-        $content = $this->overview;
+        $overview = $this->overview;
         $vote = $this->getVote();
-        $genre = $this->formatGenre();
+        $content = $this->formatGenre();
         $price = parent::getPrice();
         include __DIR__ . '/../Views/card.php';
     }
