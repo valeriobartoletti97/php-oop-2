@@ -21,6 +21,9 @@
   border-radius: 5px;
   font-weight: 600;
 }
+.footer-text{
+  color:var(--timberwolf)
+}
 .author{
   font-style: italic;
 }

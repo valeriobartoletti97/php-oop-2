@@ -1,23 +1,19 @@
 <?php
 
 include(__DIR__ . '/Genre.php');
-class Movie
+include_once(__DIR__ . '/Product.php');
+
+class Movie extends Product
 {
     private int $id;
-    private string $title;
-    private string $overview;
     private float $vote_average;
-    private string $poster_path;
-
     private array $genres;
 
-    public function __construct($id, $title, $overview, $vote_average, $poster_path, $genres)
+    public function __construct($id, $title, $overview, $vote_average, $image, $genres, $price)
     {
+        parent::__construct($image, $overview, $title, $price);
         $this->id = $id;
-        $this->title = $title;
-        $this->overview = $overview;
         $this->vote_average = $vote_average;
-        $this->poster_path = $poster_path;
         $this->genres = $genres;
     }
 
@@ -44,11 +40,12 @@ class Movie
 
     public function printCard()
     {
-        $image = $this->poster_path;
+        $image = $this->image;
         $title = $this->title;
         $content = $this->overview;
         $vote = $this->getVote();
         $genre = $this->formatGenre();
+        $price = parent::getPrice();
         include __DIR__ . '/../Views/card.php';
     }
 
@@ -61,6 +58,7 @@ class Movie
         $movies = [];
 
         foreach ($movieList as $movie) {
+            $rndPrice = rand(5, 100) . '€';
             $itemGenres = [];
             while (count($itemGenres) < count($movie['genre_ids'])) {
                 $rndIndex = rand(0, count($genres) - 1);
@@ -69,7 +67,7 @@ class Movie
                     $itemGenres[] = $genre;
                 }
             }
-            $movies[] = new Movie($movie['id'], $movie['title'], $movie['overview'], $movie['vote_average'], $movie['poster_path'], $itemGenres);
+            $movies[] = new Movie($movie['id'], $movie['title'], $movie['overview'], $movie['vote_average'], $movie['poster_path'], $itemGenres,$rndPrice);
         }
         return $movies;
     }

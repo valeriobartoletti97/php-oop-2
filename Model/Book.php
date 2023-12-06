@@ -1,20 +1,15 @@
 <?php
 
-class Book {
+include_once(__DIR__ . '/Product.php');
+class Book extends Product
+{
     private $id;
-    private $title;
-    private $overview;
-    private $image;
     private $authors;
     private $categories;
 
-    private $price;
-
-    private function __construct($id, $title, $overview, $image, $authors, $categories,) {
+    private function __construct($id, $title, $overview, $image, $authors, $categories,$price) {
+        parent::__construct($image,$overview,$title, $price);
         $this->id = $id;
-        $this->title = $title;
-        $this->overview = $overview;
-        $this->image = $image;
         $this->authors = $authors;
         $this->categories = $categories;
     }
@@ -25,7 +20,7 @@ class Book {
         $content = $this->overview;
         $authors = $this->getAuthors();
         $categories = $this->getCategories();
-        $price = $this->getPrice();
+        $price = parent::getPrice();
         include __DIR__ . '/../Views/book_card.php';
     }
 
@@ -53,13 +48,13 @@ class Book {
         return $template;
     }
     public static function fetchAll() {
-
+        $rndPrice = rand(5, 100) . '€';
         $booksString = file_get_contents( __DIR__ . '/books_db.json');
         $booksList = json_decode($booksString, true);
         $books = [];
 
         foreach ($booksList as $item) {
-            $books[] = new Book ($item['_id'], $item['title'], $item['longDescription'], $item['thumbnailUrl'], $item['authors'], $item['categories'],);
+            $books[] = new Book ($item['_id'], $item['title'], $item['longDescription'], $item['thumbnailUrl'], $item['authors'], $item['categories'],$rndPrice);
         }
         return $books;
     }
