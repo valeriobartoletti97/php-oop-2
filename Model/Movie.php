@@ -42,13 +42,22 @@ class Movie extends Product
 
     public function formatCard()
     {
+        if(ceil($this->vote_average / 2) <= 3) {
+            try {
+                $this->setDiscount(10);
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
+        }
         $cardElement=[
             'image' => $this->image,
             'title' => $this->title,
             'vote' => $this->getVote(),
             'content' => $this->formatGenre(),
             'price' => parent::getPrice(),
-            'overview' => $this->overview
+            'overview' => $this->overview,
+            'sale' => $this->getDiscount(),
+            'error' => $error ?? '',
         ];
         return $cardElement;
     }

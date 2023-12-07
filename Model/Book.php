@@ -17,9 +17,9 @@ class Book extends Product
     }
 
     public function formatCard(){
-        if($this->price > 30){
+        if($this->price > 100){
             try{
-                $this->setDiscount(10);
+                $this->setDiscount(1);
             } catch (Exception $e){
                 $error = $e->getMessage();
             }

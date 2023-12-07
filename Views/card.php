@@ -7,7 +7,7 @@
                 </div>
                 <div class="price-tag">
                     <?php if (isset($sale) && $sale){
-                        echo ($price -($price * ($sale / 100))) . '€';
+                        echo ($price -($price * ($sale / 100))) . '€';  
                     } else {
                         echo $price . '€';
                     }?>
@@ -32,7 +32,7 @@
                         </div>
                     <?php } ?>
                     <div class="mb-3">
-                        <?php echo $price ?>
+                        <?php echo $price . '€'?>
                     </div>
                     <?php
                     if(isset($sale) && $sale){?>
